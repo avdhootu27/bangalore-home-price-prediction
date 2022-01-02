@@ -2,11 +2,13 @@ from flask import Flask, request, jsonify
 import util
 app = Flask(__name__)
 
-@app.route('/get_location_names')
+@app.route('/get_location_names', methods=['GET'])
 def get_location_names():
+    print('request received')
     response = jsonify({
         "locations": util.get_location_names()
     })
+    print('returning locations')
     response.headers.add('Access-control-allow-origin', '*')
     return response
 
